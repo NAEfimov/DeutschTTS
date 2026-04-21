@@ -1,3 +1,15 @@
+Metadata-Version: 2.4
+Name: deutschtts
+Version: 0.1.0
+Summary: Local German text-to-speech pipeline with pluggable backends
+Author: DeutschTTS Contributors
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+
 # DeutschTTS
 
 Local-first German text-to-speech pipeline that runs on your machine and can use CUDA when available.
