@@ -71,5 +71,5 @@ def write_wav(path: Path, samples: list[float], sample_rate: int) -> None:
 
 
 def generate_sine(duration_s: float, sample_rate: int, freq: float = 220.0) -> list[float]:
-    samples = int(duration_s * sample_rate)
-    return [math.sin(2 * math.pi * freq * n / sample_rate) * 0.15 for n in range(samples)]
+    sample_count = int(duration_s * sample_rate)
+    return [math.sin(2 * math.pi * freq * n / sample_rate) * 0.15 for n in range(sample_count)]
