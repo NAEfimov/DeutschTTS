@@ -51,7 +51,7 @@ def _expand_simple_numbers(text: str) -> str:
 
 
 def sentence_split(text: str) -> list[str]:
-    parts = re.split(r"(?<=[\.!\?])\s+", text)
+    parts = re.split(r"(?<=[.!?])\s+", text)
     return [p.strip() for p in parts if p.strip()]
 
 
