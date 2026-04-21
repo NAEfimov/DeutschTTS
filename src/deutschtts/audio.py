@@ -22,8 +22,9 @@ def stitch_audio(chunks: list[list[float]], fade_ms: int, sample_rate: int) -> l
             continue
 
         start = len(merged) - overlap
+        denom = max(1, overlap - 1)
         for i in range(overlap):
-            t = (i + 1) / overlap
+            t = i / denom
             merged[start + i] = merged[start + i] * (1 - t) + chunk[i] * t
         merged.extend(chunk[overlap:])
 

@@ -16,8 +16,11 @@ class TestTextProcessing(unittest.TestCase):
 
     def test_chunk_sentences(self) -> None:
         sentences = ["eins zwei drei", "vier fünf sechs", "sieben acht neun"]
-        chunks = chunk_sentences(sentences, max_chars=20)
+        max_chars = 20
+        chunks = chunk_sentences(sentences, max_chars=max_chars)
         self.assertEqual(len(chunks), 3)
+        self.assertTrue(all(len(chunk) <= max_chars for chunk in chunks))
+        self.assertEqual(" ".join(chunks), " ".join(sentences))
 
 
 if __name__ == "__main__":

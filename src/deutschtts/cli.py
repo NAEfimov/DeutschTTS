@@ -24,7 +24,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def _load_text(args: argparse.Namespace) -> str:
-    if bool(args.text) == bool(args.input_file):
+    if (args.text is not None) == (args.input_file is not None):
         raise ValueError("Provide exactly one of --text or --input-file.")
     if args.text:
         return args.text
