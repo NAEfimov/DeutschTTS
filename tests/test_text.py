@@ -22,6 +22,12 @@ class TestTextProcessing(unittest.TestCase):
         self.assertTrue(all(len(chunk) <= max_chars for chunk in chunks))
         self.assertEqual(" ".join(chunks), " ".join(sentences))
 
+    def test_chunk_sentences_force_splits_long_word(self) -> None:
+        long_word = "a" * 25
+        chunks = chunk_sentences([long_word], max_chars=10)
+        self.assertEqual(chunks, ["a" * 10, "a" * 10, "a" * 5])
+        self.assertTrue(all(len(chunk) <= 10 for chunk in chunks))
+
 
 if __name__ == "__main__":
     unittest.main()

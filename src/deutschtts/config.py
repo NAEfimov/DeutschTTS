@@ -40,7 +40,7 @@ class TTSConfig:
     voice: VoiceConfig = field(default_factory=VoiceConfig)
 
     @classmethod
-    def from_env(cls) -> "TTSConfig":
+    def from_env(cls) -> TTSConfig:
         model_name = os.getenv("DEUTSCHTTS_MODEL", "dummy-sine")
         model_path = os.getenv("DEUTSCHTTS_MODEL_PATH")
         sample_rate = int(os.getenv("DEUTSCHTTS_SAMPLE_RATE", "22050"))

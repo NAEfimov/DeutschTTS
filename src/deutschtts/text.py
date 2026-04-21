@@ -41,6 +41,8 @@ def _expand_abbreviations(text: str) -> str:
 
 
 def _expand_simple_numbers(text: str) -> str:
+    """Expand 1-4 digit numeric tokens; other number formats are left unchanged."""
+
     def repl(match: re.Match[str]) -> str:
         token = match.group(0)
         return " ".join(_NUMBER_MAP[ch] for ch in token)
@@ -87,6 +89,16 @@ def _force_split(text: str, max_chars: int) -> list[str]:
     chunks: list[str] = []
     current = ""
     for word in words:
+        if len(word) > max_chars:
+            if current:
+                chunks.append(current)
+                current = ""
+            i = 0
+            while i < len(word):
+                chunks.append(word[i : i + max_chars])
+                i += max_chars
+            continue
+
         candidate = f"{current} {word}".strip()
         if len(candidate) <= max_chars:
             current = candidate
@@ -94,9 +106,6 @@ def _force_split(text: str, max_chars: int) -> list[str]:
             if current:
                 chunks.append(current)
                 current = word
-            else:
-                chunks.append(word[:max_chars])
-                current = word[max_chars:]
     if current:
         chunks.append(current)
     return chunks
